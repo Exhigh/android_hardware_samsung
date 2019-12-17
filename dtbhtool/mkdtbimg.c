@@ -82,7 +82,9 @@ int main(int argc, char **argv)
             pagesize = strtol(val, NULL, 10);
             if (pagesize == 0)
                 pagesize = default_pagesize;
-        } else {
+        } else if (!strcmp(arg, "")) {
+            // Ignore null argument 
+         } else {
             // Check if this is the dtb path
             int err = stat(arg, &sbuf);
             if (err != 0 || !S_ISDIR(sbuf.st_mode))
